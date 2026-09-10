@@ -1,7 +1,7 @@
 $backgroundColor: #ffffff;
 $bodyColor: #000000;
 $bodyFont: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-$linkColor: #212529 !important;
+$linkColor: #2b4c7e;
 
 body {
   background: $backgroundColor;
@@ -9,6 +9,21 @@ body {
   font-family: $bodyFont;
 }
 
+// Links inside text: restrained blue, underline only on hover.
 body a {
-  color: $linkColor
+  color: $linkColor;
+  text-decoration: none;
+}
+
+body a:hover {
+  text-decoration: underline;
+}
+
+// Header and footer anchors are controls (name, nav, social icons), not text links: body colour, no underline.
+header a,
+footer a,
+header a:hover,
+footer a:hover {
+  color: $bodyColor;
+  text-decoration: none;
 }
