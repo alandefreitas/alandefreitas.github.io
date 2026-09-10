@@ -1,35 +1,23 @@
-<div class="row g-5 mb-5">
-  <div>
-    {% if page.title != "Home" %}
-    <h3 class="fw-bold border-bottom pb-3 mb-5">Selected Repositories</h3>    
-    {% else %}
-    <h3 class="fw-bold border-bottom pb-3 mb-5">Repositories</h3>
-    {% endif %}
-    
-    <table class="table">
-      {% for item in site.data.repositories.index %}
-        {% if page.title != "Home" %}
-          <tr>
-            <td>
-        {% endif %}
-          {% if page.title == "Home" and item.name != site.data.repositories.index.first.name %}, {% endif %}
-          <i class="fas fa-code"></i>
-          <a href="{{ item.url }}" target="_blank">
-             {{ item.name }}
-          </a>
-        {% if page.title != "Home" or item.featured %}
-            </td>
-            {% if page.title == "Repositories" %}
-              {% assign v = "0%" %}
-            {% else %}
-              {% assign v = "100%" %}
-            {% endif %}
-            <td><img src="https://img.shields.io/github/stars/{{ item.github }}" alt="{{ item.name }} stars" style="max-width: 100%; filter: grayscale({{ v }});"></td>
-            <td><img src="https://img.shields.io/github/contributors/{{ item.github }}" alt="{{ item.name }} contributors" style="max-width: 100%; filter: grayscale({{ v }});"></td>
-            <td><img src="https://img.shields.io/github/last-commit/{{ item.github }}" alt="{{ item.name }} last commit" style="max-width: 100%; filter: grayscale(100%);"></td>
-          </tr>
-        {% endif %}
-      {% endfor %}
-    </table>
+{% if page.title == "Home" %}
+  <h3 class="section-title"><i class="fas fa-code-branch icon" aria-hidden="true"></i>Repositories</h3>
+  <p class="inline-list">
+    {% for item in site.data.repositories.index %}<a href="{% if item.docs %}{{ item.docs }}{% else %}{{ item.url }}{% endif %}">{{ item.name }}</a>{% unless forloop.last %} <span class="sep">·</span> {% endunless %}{% endfor %}
+  </p>
+{% else %}
+  {% if page.title != "Resume" %}
+    <h1 class="page-title">Repositories</h1>
+  {% else %}
+    <h3 class="section-title"><i class="fas fa-code-branch icon" aria-hidden="true"></i>Repositories</h3>
+  {% endif %}
+  <div class="row g-3 repo-cards">
+    {% for item in site.data.repositories.index %}
+      <div class="col-sm-6 col-lg-4">
+        <div class="repo-card">
+          <a class="repo-card-name" href="{% if item.docs %}{{ item.docs }}{% else %}{{ item.url }}{% endif %}"><i class="fas fa-code-branch icon" aria-hidden="true"></i>{{ item.name }}</a>
+          <a class="repo-card-link" href="{{ item.url }}"><i class="fab fa-github icon" aria-hidden="true"></i>{{ item.github }}</a>
+          {% if item.docs %}<a class="repo-card-link" href="{{ item.docs }}"><i class="fas fa-book-open icon" aria-hidden="true"></i>Documentation</a>{% endif %}
+        </div>
+      </div>
+    {% endfor %}
   </div>
-</div>
+{% endif %}

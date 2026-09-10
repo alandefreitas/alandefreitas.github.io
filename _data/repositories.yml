@@ -1,13 +1,29 @@
+# Order: the four projects named in the home-page bio in the order they appear there, then the MrDocs and Boost
+# tooling, then the libraries.
 index:
-- {
-      name: 'Boost.URL',
-      url: 'https://github.com/boostorg/url',
-      github: 'boostorg/url'
-  }
 - {
       name: 'MrDocs',
       url: 'https://github.com/cppalliance/mrdocs',
-      github: 'cppalliance/mrdocs'
+      github: 'cppalliance/mrdocs',
+      docs: 'https://www.mrdocs.com/'
+  }
+- {
+      name: 'C++ Actions',
+      url: 'https://github.com/alandefreitas/cpp-actions',
+      github: 'alandefreitas/cpp-actions',
+      docs: 'https://alandefreitas.github.io/cpp-actions/'
+  }
+- {
+      name: 'Matplot++',
+      url: 'https://github.com/alandefreitas/matplotplusplus',
+      github: 'alandefreitas/matplotplusplus',
+      docs: 'https://alandefreitas.github.io/matplotplusplus/'
+  }
+- {
+      name: 'Boost.URL',
+      url: 'https://github.com/boostorg/url',
+      github: 'boostorg/url',
+      docs: 'https://www.boost.org/libs/url'
   }
 - {
       name: 'Antora C++ Reference Extension',
@@ -30,44 +46,38 @@ index:
       github: 'cppalliance/asciidoctor-boost-links'
   }
 - {
-      name: 'C++ Actions',
-      url: 'https://github.com/alandefreitas/cpp-actions',
-      github: 'alandefreitas/cpp-actions'
-  }
-- {
-      name: 'Matplot++',
-      url: 'https://github.com/alandefreitas/matplotplusplus',
-      github: 'alandefreitas/matplotplusplus'
+      name: 'FetchBoostContent',
+      url: 'https://github.com/alandefreitas/FetchBoostContent',
+      github: 'alandefreitas/FetchBoostContent',
+      docs: 'https://alandefreitas.github.io/FetchBoostContent/'
   }
 - {
       name: 'Small',
       url: 'https://github.com/alandefreitas/small',
-      github: 'alandefreitas/small'
+      github: 'alandefreitas/small',
+      docs: 'https://alandefreitas.github.io/small/'
   }
 - {
       name: 'Futures',
       url: 'https://github.com/alandefreitas/futures',
-      github: 'alandefreitas/futures'
+      github: 'alandefreitas/futures',
+      docs: 'https://alandefreitas.github.io/futures/'
   }
 - {
       name: 'Pareto',
       url: 'https://github.com/alandefreitas/pareto',
-      github: 'alandefreitas/pareto'
-  }
-- {
-      name: 'Clang Unformat',
-      url: 'https://github.com/alandefreitas/clang-unformat',
-      github: 'alandefreitas/clang-unformat'
-  }
-- {
-      name: 'FetchBoostContent',
-      url: 'https://github.com/alandefreitas/FetchBoostContent',
-      github: 'alandefreitas/FetchBoostContent'
+      github: 'alandefreitas/pareto',
+      docs: 'https://alandefreitas.github.io/pareto/'
   }
 - {
       name: 'Socks',
       url: 'https://github.com/alandefreitas/socks_proto',
       github: 'alandefreitas/socks_proto'
+  }
+- {
+      name: 'Clang Unformat',
+      url: 'https://github.com/alandefreitas/clang-unformat',
+      github: 'alandefreitas/clang-unformat'
   }
 - {
       name: 'BibExplorer',
@@ -79,4 +89,3 @@ index:
       url: 'https://github.com/alandefreitas/moderncpp',
       github: 'alandefreitas/moderncpp'
   }
-

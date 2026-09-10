@@ -2,6 +2,19 @@
 layout: default
 ---
 
+<div class="toc-layout">
+<h1 class="page-title">Publications</h1>
+
+{% include toc.html root="#publications" levels="h3" %}
+
 {{ content }}
 
-{% include publications.html %}
+<div id="publications">
+{% assign years = site.data.publications.index | map: "year" | uniq | sort | reverse %}
+{% for year in years %}
+  <h3 class="section-title">{{ year }}</h3>
+  {% assign items = site.data.publications.index | where: "year", year %}
+  {% include publications.html items=items %}
+{% endfor %}
+</div>
+</div>

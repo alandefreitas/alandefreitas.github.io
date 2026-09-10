@@ -1,0 +1,110 @@
+{% comment %}
+Table of contents built from the headings on the page. Parameters: `root` (CSS selector of the element whose
+headings are listed), `levels` (comma-separated heading tags, e.g. "h2,h3") and `inline` (set to false to
+suppress the inline rendering). Two renderings of the same list: a column floating in the left margin on wide
+screens that follows the reader and marks the section being read, and, on narrower screens, one line of links
+under the title. The inline rendering uses the deepest heading levels whose labels fit in about 200 characters (one line of
+links for a single level, one line per top-level heading when there are two), and is dropped when even the
+top level does not fit. Nothing is hard-coded; a page opts in by wrapping its content
+in `.toc-layout` and including this file.
+{% endcomment %}
+<nav class="toc-side" aria-label="Contents" data-toc-root="{{ include.root }}" data-toc-levels="{{ include.levels }}" data-toc-inline="{% if include.inline == false %}false{% else %}true{% endif %}"><div class="toc-side-inner"></div></nav>
+<nav class="toc-inline" aria-label="Contents"></nav>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    var side = document.querySelector('.toc-side');
+    var inline = document.querySelector('.toc-inline');
+    var root = document.querySelector(side.dataset.tocRoot);
+    if (!root) return;
+    var headings = Array.prototype.slice.call(root.querySelectorAll(side.dataset.tocLevels));
+    if (headings.length < 2) { side.remove(); inline.remove(); return; }
+    var levels = headings.map(function (h) { return parseInt(h.tagName.substring(1), 10); });
+    var top = Math.min.apply(null, levels);
+    var used = {};
+    var links = [];
+    headings.forEach(function (heading, i) {
+      var id = heading.id || heading.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      while (used[id]) id += '-';
+      used[id] = true;
+      heading.id = id;
+      var a = document.createElement('a');
+      a.href = '#' + id;
+      a.textContent = heading.textContent.trim();
+      a.className = 'toc-level-' + (levels[i] - top);
+      side.firstElementChild.appendChild(a);
+      links.push(a);
+    });
+
+    // Inline rendering: the deepest set of levels whose labels fit the budget; dropped when even the top level
+    // does not fit. One level gives a single line of links; two or more give one line per top-level heading,
+    // the heading as a small-capitals label followed by its subsections.
+    var budget = 200;
+    var chosen = null;
+    if (side.dataset.tocInline !== 'false') {
+      for (var depth = Math.max.apply(null, levels); depth >= top; depth--) {
+        var total = 0;
+        headings.forEach(function (h, i) { if (levels[i] <= depth) total += h.textContent.trim().length; });
+        if (total <= budget) { chosen = depth; break; }
+      }
+    }
+    function link(h) {
+      var b = document.createElement('a');
+      b.href = '#' + h.id;
+      b.textContent = h.textContent.trim();
+      return b;
+    }
+    function separator() {
+      var frag = document.createDocumentFragment();
+      var sep = document.createElement('span');
+      sep.className = 'sep';
+      sep.textContent = '·';
+      frag.appendChild(document.createTextNode(' '));
+      frag.appendChild(sep);
+      frag.appendChild(document.createTextNode(' '));
+      return frag;
+    }
+    if (chosen === null) {
+      inline.remove();
+    } else if (chosen === top) {
+      var first = true;
+      headings.forEach(function (h, i) {
+        if (levels[i] !== top) return;
+        if (!first) inline.appendChild(separator());
+        first = false;
+        inline.appendChild(link(h));
+      });
+    } else {
+      inline.classList.add('toc-inline-grouped');
+      var group = null;
+      headings.forEach(function (h, i) {
+        if (levels[i] > chosen) return;
+        if (levels[i] === top || !group) {
+          group = document.createElement('div');
+          group.className = 'toc-inline-group';
+          var label = link(h);
+          label.className = levels[i] === top ? 'toc-inline-label' : '';
+          group.appendChild(label);
+          inline.appendChild(group);
+        } else {
+          group.appendChild(separator());
+          group.appendChild(link(h));
+        }
+      });
+    }
+
+    // The section being read: the last heading that has reached the line where anchor jumps put a heading
+    // (headings carry scroll-margin-top, so a jump lands just below that line). At the end of the page the
+    // last heading wins, since nothing further can be scrolled to.
+    var line = 3 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+    function update() {
+      var current = 0;
+      headings.forEach(function (h, i) { if (h.getBoundingClientRect().top <= line) current = i; });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) current = headings.length - 1;
+      links.forEach(function (a, i) { a.classList.toggle('active', i === current); });
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    window.addEventListener('hashchange', function () { setTimeout(update, 0); });
+    update();
+  });
+</script>

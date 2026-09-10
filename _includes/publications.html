@@ -1,47 +1,27 @@
-<div class="row g-5 mb-5">
-  <div>
-    {% if page.title != "CV" %}
-    {% if page.title != "Home" %}
-    <h3 class="fw-bold border-bottom pb-3 mb-5">Selected Publications</h3>    
-    {% else %}
-    <h3 class="fw-bold border-bottom pb-3 mb-5">Publications</h3>
+{% if page.title == "Home" %}
+  <h3 class="section-title">Selected publications</h3>
+{% endif %}
+{% assign pub_items = include.items | default: site.data.publications.index %}
+<ul class="plain-list">
+  {% for item in pub_items %}
+    {% if page.title != "Home" or item.featured %}
+      <li class="entry">
+        {% if item.url %}<a class="entry-title" href="{{ item.url }}">{% else %}<span class="entry-title">{% endif %}
+          {% if item.name_en %}{{ item.name_en }}{% else %}{{ item.name }}{% endif %}
+        {% if item.url %}</a>{% else %}</span>{% endif %}
+        {% if item.name_en %}<span class="entry-original">{{ item.name }}</span>{% endif %}
+        <span class="entry-meta"><i class="fas fa-user-friends icon" aria-hidden="true"></i>
+          {% assign author_list = item.authors | split: ";" %}
+          {% capture authors %}{% for author in author_list %}{% assign author_names = author | strip | split: " " %}{% for author_name in author_names %}{{ author_name | capitalize }}|{% endfor %}, {% endfor %}{% endcapture %}
+          {{ authors | split: "|" | join: " " | strip | replace: " ,", "," | remove: ", ," | split: "," | join: "," | rstrip }}
+        </span>
+        <span class="entry-meta"><i class="fas fa-book-open icon" aria-hidden="true"></i>
+          {% if item.venue_en %}{{ item.venue_en }} ({{ item.venue }}){% else %}{{ item.venue }}{% endif %}{% if item.year %}, {{ item.year }}{% endif %}
+        </span>
+      </li>
     {% endif %}
-    {% endif %}
-    <table class="table">
-    {% for item in site.data.publications.index %}
-        {% if page.title != "Home" or item.featured %}
-          <tr>
-            <td>
-              {% assign author_list = item.authors | split: ";" %}
-              {% for author in author_list %}
-                <i class="fas fa-user"></i>
-                {% assign author_names = author | strip | split: " " %}
-                {% for author_name in author_names %}
-                  {{ author_name | strip | capitalize }}
-                {% endfor %}
-                <br/>
-              {% endfor %}
-            </td>
-            <td>
-              <i class="fas fa-file-alt"></i>
-              {% if item.url %}<a href="{{ item.url }}" target="_blank">{% endif %}
-                {% if item.name_en %}
-                  {{ item.name_en }} <br/><i class="fas fa-language"></i> <i>{{ item.name }}</i>
-                {% else %}
-                  {{ item.name }}
-                {% endif %}
-              {% if item.url %}</a>{% endif %}
-              <br/>
-              {% if item.venue_en %}
-                <i class="fas fa-map-marker-alt"></i> <i>{{item.venue_en}}</i> (<i>{{ item.venue }}</i>)
-              {% else %}
-                <i class="fas fa-map-marker-alt"></i> <i>{{item.venue}}</i>
-              {% endif %}
-              {% if item.year %}<br/><i class="fas fa-calendar"></i> {{item.year}}{% endif %}
-            </td>
-          </tr>
-      {% endif %}
-    {% endfor %}
-    </table>
-  </div>
-</div>
+  {% endfor %}
+</ul>
+{% if page.title == "Home" %}
+  <p class="more-link"><a href="{{ site.baseurl }}/publications">All publications, by year</a></p>
+{% endif %}

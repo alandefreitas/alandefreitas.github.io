@@ -1,9 +1,9 @@
 - title: 'E-mail Address'
-  description: '<img src="https://i.imgbun.com/TyWhH0GS.png" width="200"/>'
+  description: '<img class="email-image" src="/assets/img/email.png" alt="Email address" width="220">'
   icon: fas fa-envelope
 
 - title: 'Website'
-  description: 'https://alandefreitas.github.io/alandefreitas/'
+  description: 'https://alandefreitas.github.io/'
   icon: fas fa-globe-americas
 
 - title: 'Github'
