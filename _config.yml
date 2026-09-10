@@ -2,3 +2,8 @@ url: "https://alandefreitas.github.io" # the base hostname & protocol for your s
 baseurl: "" # the subpath of your site, e.g. /blog
 title: "Alan de Freitas" # the name of your site, e.g. ACME Corp.
 description: "A small website to share my stuff"
+
+# Local-only folders that must not be copied into the built site.
+exclude:
+  - local
+  - vendor
