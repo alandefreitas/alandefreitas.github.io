@@ -9,6 +9,34 @@
 </footer>
 
 <script>
+  // Video covers: swap the still for the YouTube player and start playback on click.
+  // Uses the IFrame Player API so that playVideo() runs inside the click's user activation;
+  // a plain iframe with autoplay=1 loads but does not start in Safari.
+  (function () {
+    var covers = document.querySelectorAll('.video-cover');
+    if (!covers.length) return;
+    var apiReady = new Promise(function (resolve) {
+      window.onYouTubeIframeAPIReady = resolve;
+      var s = document.createElement('script');
+      s.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(s);
+    });
+    covers.forEach(function (cover) {
+      cover.querySelector('.video-cover-button').addEventListener('click', function () {
+        var mount = document.createElement('div');
+        cover.replaceChildren(mount);
+        apiReady.then(function () {
+          new YT.Player(mount, {
+            host: 'https://www.youtube-nocookie.com',
+            videoId: cover.dataset.videoId,
+            playerVars: { autoplay: 1, rel: 0, playsinline: 1 },
+            events: { onReady: function (e) { e.target.playVideo(); } }
+          });
+        });
+      }, { once: true });
+    });
+  })();
+
   // External links open in a new tab; links within this site stay in this tab.
   document.querySelectorAll('a[href]').forEach(function (a) {
     if (a.hostname && a.hostname !== location.hostname) {

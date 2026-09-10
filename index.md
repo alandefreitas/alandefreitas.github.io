@@ -3,23 +3,17 @@ layout: home
 title: "Home"
 ---
 
-<h3 class="fw-bold">Welcome to my personal website 👋</h3>
-
-<br/>
-<br/>
-
-🛠️ I'm one of the earliest members of [The C++ Alliance](https://cppalliance.org/) and I love building tools that make everyday C++ work smoother. I led the project team for [MrDocs](https://www.mrdocs.com), helped bring [Boost.URL](https://github.com/boostorg/url) into the Boost collection, and created the widely used [cpp-actions](https://github.com/alandefreitas/cpp-actions) GitHub workflow suite. I'm also the author of [Matplot++](https://github.com/alandefreitas/matplotplusplus), a plotting library that keeps powering scientific computing teams around the world. Curious about the rest of my projects? My [GitHub profile](https://github.com/alandefreitas) is open for forks, issues, and PRs.
-
-🧠 My research covers multi-objective optimization, data structures for Pareto fronts, and symbolic evolutionary algorithms—skills that now support modern Machine Learning (ML) and Artificial Intelligence (AI) projects. I hold a Ph.D. in Electrical Engineering focused on Computational Intelligence (also an early pillar of ML and AI) plus M.S. and B.S. degrees in Computer Science.
-
-✈️ Before the Alliance, I worked on aircraft engine design at the [Rolls-Royce Control & Systems UTC](https://www.rolls-royce.com/about/our-research/research-and-university.aspx), and I was a [Marie Curie researcher](https://marie-sklodowska-curie-actions.ec.europa.eu/) within the European Union's [Seventh Framework Programme](https://ec.europa.eu/research/fp7/index_en.cfm), where I introduced the [Aggregation Trees](https://www.sciencedirect.com/science/article/abs/pii/S0020025514011347) method that still informs modern engineering practice. As a former university professor with more than 50 peer-reviewed publications, I've guided graduate research groups, taught C++ from intro to doctoral programs, and champion reproducible science in every project.
-
-🎶 When I'm not coding you'll usually find me exploring AI-supported, multi-objective techniques for music composition—a line of work that also shaped my Ph.D. thesis—or relaxing in the kitchen 👨‍🍳, playing the guitar 🎸, and chasing after the dog 🦮.
-
-<br/>
-<br/>
-<br/>
-
-<div style="text-align:center">
-  <img src="https://readme-jokes.vercel.app/api?bgColor=%23ffffff&borderColor=%23d0d7de&textColor=%23111111&qColor=%23333333&aColor=%23666666&codeColor=%23444444" alt="Jokes Card" width="520" />
+<div class="ratio ratio-16x9 mb-5 video-cover" data-video-id="Nb_YmLPmsVM" data-video-title="How Music and Optimization Led Alan de Freitas to Open Source">
+  <button type="button" class="video-cover-button" aria-label="Play: How Music and Optimization Led Alan de Freitas to Open Source">
+    <img src="{{ site.baseurl }}/assets/img/testimonial-cover.jpg" alt="Alan de Freitas being interviewed on a green sofa" width="1280" height="720">
+    <span class="video-cover-play" aria-hidden="true"></span>
+  </button>
 </div>
+
+Hi, I'm Alan. I grew up in the countryside of [Minas Gerais](https://en.wikipedia.org/wiki/Minas_Gerais), Brazil, and have lived all around the world since. My PhD in [computational intelligence](https://en.wikipedia.org/wiki/Computational_intelligence), the [evolutionary](https://en.wikipedia.org/wiki/Evolutionary_computation) and [neural](https://en.wikipedia.org/wiki/Artificial_neural_network) side of [AI](https://en.wikipedia.org/wiki/Artificial_intelligence), and my work in [mathematical optimization](https://en.wikipedia.org/wiki/Mathematical_optimization) led to methods I have applied to music composition, aircraft-engine and electric-motor design, energy storage for smart cities, and logistics. Rewriting one of those algorithms in [C++](https://en.wikipedia.org/wiki/C%2B%2B) turned a coffee break into half a second, moved my research to C++, and led to [Matplot++](https://alandefreitas.github.io/matplotplusplus/), so that scientific computing could stay in C++, where I now sit on the [ISO committee (WG21)](https://isocpp.org/std/the-committee).
+
+Today I'm a Staff Engineer and one of the earliest members of [The C++ Alliance](https://cppalliance.org/), a nonprofit that funds work on the [Boost libraries](https://www.boost.org/), C++ tooling and the ISO C++ standard. I designed the architecture of [MrDocs](https://www.mrdocs.com/), our open-source documentation generator for modern C++, built directly on the [Clang](https://clang.llvm.org/) and [LLVM](https://llvm.org/) compiler front end and now being adopted across the Boost libraries. I set its technical direction, keeping its brilliant and independent contributors converging on it and up to speed on the Clang internals. I created and maintain [cpp-actions](https://alandefreitas.github.io/cpp-actions/), the CI automation used by Boost libraries and the Alliance's projects; authored [Matplot++](https://alandefreitas.github.io/matplotplusplus/), one of the most widely used C++ plotting libraries; and co-authored [Boost.URL](https://www.boost.org/libs/url), taking it through Boost's peer review and maintaining it in every Boost release since 1.81, one of [twenty Boost libraries](https://www.boost.org/users/alan-de-freitas-tqz0/) I have contributed to.
+
+Before the Alliance, I spent a decade in academia and industry: a [Marie Curie fellowship](https://marie-sklodowska-curie-actions.ec.europa.eu/), aircraft-engine design at the [Rolls-Royce Technology Centre](https://www.rolls-royce.com/about/our-research/research-and-university.aspx) in the UK, a visiting professorship at [McGill](https://www.mcgill.ca/) and the [Université de Montréal](https://www.umontreal.ca/), and ten years as a professor at the [Federal University of Ouro Preto](https://ufop.br/) teaching advanced C++ and research methods up to the doctoral level. I have more than [50 peer-reviewed publications](/publications), two of them in the journals ranked first in the world in [computer science](https://www.sciencedirect.com/science/article/abs/pii/S0020025514011347) and in [mathematics](https://www.sciencedirect.com/science/article/abs/pii/S2210650221000766), and a [best-paper award](https://doi.org/10.1145/3321707.3321872) at [GECCO](https://en.wikipedia.org/wiki/Genetic_and_Evolutionary_Computation_Conference), the world's largest conference on evolutionary computation. I also coordinated [Aluno Integrado](https://alunointegrado.dcx.ufpb.br/curso.html), a program that taught programming to more than 10,000 students from low-income regions of Brazil.
+
+Off the clock, I cook, play guitar, and spend time with my dog.
