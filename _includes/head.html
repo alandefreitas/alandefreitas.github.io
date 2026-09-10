@@ -2,11 +2,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <title>{{ page.title }} | {{ site.title }}</title>
-  <link rel="stylesheet" href="{{ site.github.url }}/assets/libs/bootstrap/bootstrap.min.css">
-  <script defer src="{{ site.github.url }}/assets/libs/fontawesome/all.min.js"></script>
-  <link rel="stylesheet" href="{{ site.github.url }}/assets/css/main.css">
-  <link rel="apple-touch-icon" sizes="152x152" href="{{ site.github.url }}/assets/apple-icon-152x152.png">
-  <link rel="shortcut icon" href="{{ site.github.url }}/assets/favicon.ico">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <script>
+    // Preview aid: ?theme=dark or ?theme=light forces a colour scheme and is remembered for the session; ?theme=auto clears it.
+    (function () {
+      var q = new URLSearchParams(location.search).get('theme');
+      if (q === 'auto') sessionStorage.removeItem('theme');
+      else if (q === 'dark' || q === 'light') sessionStorage.setItem('theme', q);
+      var t = sessionStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/libs/bootstrap/bootstrap.min.css">
+  <script defer src="{{ site.baseurl }}/assets/libs/fontawesome/all.min.js"></script>
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
+  <link rel="apple-touch-icon" sizes="152x152" href="{{ site.baseurl }}/assets/apple-icon-152x152.png">
+  <link rel="shortcut icon" href="{{ site.baseurl }}/assets/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 </head>

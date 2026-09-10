@@ -1,6 +1,7 @@
 menu:
-- {name: 'resume', url: '/cv'}
-- {name: 'repos', url: '/repositories'}
+- {name: 'blog', url: '/blog'}
+- {name: 'resume', url: '/resume'}
+- {name: 'repositories', url: '/repositories'}
 - {name: 'papers', url: '/publications'}
 # - {name: 'courses', url: '/courses'}
 # - {name: 'people', url: '/people'}
@@ -17,13 +18,11 @@ courses:
 #- {name: 'Stellar Structures', url: 'stellar-structures'}
 
 social:
-- {icon: 'github', link: 'https://github.com/alandefreitas'}
-#- {icon: 'twitter', link: 'https://twitter.com/paululele'}
-#- {icon: 'instagram', link: 'https://instagram.com/paululele'}
-#- {icon: 'linkedin', link: 'https://linkedin.com/in/lenpaul'}
+- {name: 'GitHub', icon: 'github', link: 'https://github.com/alandefreitas'}
+- {name: 'LinkedIn', icon: 'linkedin', link: 'https://www.linkedin.com/in/alandefreitas/'}
 
 contacts:
-- {name: 'Alan Freitas',
+- {name: 'Alan de Freitas',
    title: 'Staff Engineer',
    # department: 'Computer Science',
    institution: 'The C++ Alliance',

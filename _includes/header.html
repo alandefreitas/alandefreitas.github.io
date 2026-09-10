@@ -1,13 +1,13 @@
-<header class="d-flex flex-column flex-md-row align-items-center pb-3 mb-5 border-bottom">
+<header class="site-header d-flex flex-column flex-md-row align-items-md-end">
   <div>
-    <a href="{{ site.github.url }}/" class="d-flex align-items-center text-decoration-none">
-      <span class="fs-4 fw-bold">{{ site.title }}</span>
-    </a>
-    <span class="d-block">{{ site.description }}</span>
+    <a href="{{ site.baseurl }}/" class="site-name d-block">{{ site.title }}</a>
+    <span class="site-tagline d-block">{{ site.description }}</span>
   </div>
-  <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+  <nav class="site-nav d-flex flex-wrap mt-3 mt-md-0 ms-md-auto">
     {% for item in site.data.settings.menu %}
-      <a class="me-3 py-2 text-decoration-none" href="{{ site.github.url }}{{ item.url }}">{{ item.name }}</a>
+      {% assign item_dir = item.url | append: "/" %}
+      {% assign item_file = item.url | append: ".html" %}
+      <a href="{{ site.baseurl }}{{ item.url }}"{% if page.url == item.url or page.url == item_dir or page.url == item_file %} class="active"{% endif %}>{{ item.name }}</a>
     {% endfor %}
   </nav>
 </header>
