@@ -2,9 +2,38 @@
 layout: default
 ---
 
-<div class="row g-5 mb-5">
-  <div class="col-md-12">
-    <h3 class="fw-bold border-bottom pb-3 mb-5">{{ page.title }}</h3>
+<article class="post toc-layout">
+  <header class="post-header">
+    <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+    <h1 class="page-title mb-0">{{ page.title }}</h1>
+    {% if page.original_url %}
+      <p class="post-origin">First published on <a href="{{ page.original_url }}">{{ page.original_site }}</a> on {{ page.date | date: "%B %-d, %Y" }}.</p>
+    {% endif %}
+  </header>
+  {% include toc.html root=".post-body" levels="h1,h2" %}
+  <div class="post-body">
     {{ content }}
   </div>
-</div>
+  <nav class="post-nav" aria-label="Other posts">
+    <div class="post-nav-older">
+      {% if page.previous %}
+        <span class="post-nav-label">Previous</span>
+        <a href="{{ site.baseurl }}{{ page.previous.url }}">{{ page.previous.title }}</a>
+      {% endif %}
+    </div>
+    <div class="post-nav-newer">
+      {% if page.next %}
+        <span class="post-nav-label">Next</span>
+        <a href="{{ site.baseurl }}{{ page.next.url }}">{{ page.next.title }}</a>
+      {% endif %}
+    </div>
+    <div class="post-nav-all"><a href="{{ site.baseurl }}/blog">All posts</a></div>
+  </nav>
+</article>
+
+{% if page.mermaid %}
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, securityLevel: "loose" });
+</script>
+{% endif %}

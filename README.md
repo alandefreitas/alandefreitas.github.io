@@ -1,18 +1,21 @@
 # alandefreitas.github.io
 
-Alan de Freitas's personal site, served by GitHub Pages from the `main` branch at https://alandefreitas.github.io/. Jekyll, with the layouts and includes of the 2022 "academic" theme kept in the repo and restyled. The reasoning behind the design and the content lives outside this repo, in `~/Documents/Professional/Resume/Strategy/website/README.md` (design decisions) and `Strategy/brand/criteria.md` (palette, type and layout rules every change must follow).
+Alan de Freitas's personal site, served by GitHub Pages from the `main` branch at https://alandefreitas.github.io/. Jekyll, with the layouts and includes of the 2022 "academic" theme kept in the repo and restyled. The reasoning behind the design and the content lives outside this repo, in `~/Documents/Professional/Resume/Strategy/website/README.md` (design decisions, blog decisions) and `Strategy/brand/criteria.md` (palette, type and layout rules every change must follow).
 
 ## Layout of the repo
 
 | Path | What it is |
 | --- | --- |
 | `index.md` | Home: video cover, bio (opening paragraph, then Engineering and Academia and industry side by side with one image each), repositories, selected publications. |
-| `resume.md`, `repositories.md`, `publications.md`, `contact.md` | One page each; the content comes from `_data/` and the layouts. `cv.html` is only a redirect from the old `/cv` address to `/resume`. |
-| `_layouts/` | `default` (page frame), `home`, `cv` (the resume: label column and entries), `contact`, `page`, `repositories`, `publications` (grouped by year). |
-| `_includes/` | `head`, `header`, `footer` (social links, click-to-play video script, external links in new tabs), `repositories`, `publications` (takes an optional `items` list), `contact`, `toc` (table of contents built from the page's headings: floating in the left margin on wide screens, one line of links under the title elsewhere; a layout wraps its content in `.toc-layout` and includes it with `root`, `levels` and optionally `inline=false`; the inline rendering keeps the deepest levels that fit in about 200 characters, one line per top-level heading when there are two; used by the resume and the publications page). |
+| `blog.md`, `resume.md`, `repositories.md`, `publications.md`, `contact.md` | One page each; the content comes from `_data/` and the layouts. `cv.html` is only a redirect from the old `/cv` address to `/resume`. |
+| `_posts/` | Blog posts, one Markdown file per post, named `YYYY-MM-DD-slug.md`. Posts Alan writes for this site go here directly. |
+| `_posts/cppalliance/` | Mirrored copies of Alan's posts on cppalliance.org, **generated** by `scripts/fetch-external-posts.py`. The folder is wiped and rewritten on every run: never edit these files. Jekyll reads `_posts/` recursively, and the `permalink` setting in `_config.yml` gives every post the URL `/blog/YYYY/MM/DD/slug/`, so the subfolder changes nothing for readers; it only separates generated files from hand-written ones. A mirrored post differs from a local one only by two front-matter fields, `original_url` and `original_site`, which the post layout turns into the line "First published on cppalliance.org on <date>", and by `mermaid: true` when it contains diagrams. |
+| `_layouts/` | `default` (page frame), `home`, `blog` (list of all posts), `post` (date, title, origin line, body, previous and next links), `cv` (the resume: label column and entries), `contact`, `page`, `repositories`, `publications` (grouped by year). |
+| `_includes/` | `head`, `header`, `footer` (social links, click-to-play video script, external links in new tabs), `repositories`, `publications` (takes an optional `items` list), `contact`, `toc` (table of contents built from the page's headings: floating in the left margin on wide screens, one line of links under the title elsewhere; a layout wraps its content in `.toc-layout` and includes it with `root`, `levels` and optionally `inline=false`; the inline rendering keeps the deepest levels that fit in about 200 characters, one line per top-level heading when there are two; used by the resume, posts and the publications page). |
 | `_sass/main.scss` | The whole stylesheet: palette tokens as CSS custom properties (light scheme, and a dark scheme that follows the system preference), type, layout, components. Compiled through `assets/css/main.scss`. |
 | `_data/` | `settings.yml` (menu, social links, contact card), `repositories.yml`, `publications.yml`, `cv/*.yml`. |
 | `assets/img/` | `testimonial-cover.jpg` (video cover), `bio-engineering.jpg` and `bio-academia.jpg` (the two bio images), `qr-site.svg` (charcoal on sand, readable in both colour schemes), `email.png` (the address as an image so harvesters do not get plain text; charcoal on transparent, inverted by CSS in dark mode). |
+| `scripts/fetch-external-posts.py` | Mirrors the Alliance posts (see above). Needs git and the network; no credentials. |
 | `local/` | Ignored scratch folder (video source, drafts); excluded from the build. |
 
 `courses.md`, `people.md` and their layouts are theme leftovers with empty sample data and no menu entry.
@@ -34,6 +37,7 @@ Then open http://127.0.0.1:4000/. Changes to `_config.yml` need a restart; every
   ```
 
 - `?theme=dark` or `?theme=light` on any URL forces a colour scheme for the browser session; `?theme=auto` clears it. There is no toggle on the page by design.
+- After a new post of Alan's goes live on cppalliance.org: `python3 scripts/fetch-external-posts.py`, check the result locally, commit.
 - To change the video cover frame, see the recipe in the Strategy website README.
 - To regenerate the email image (Baskerville, since Garamond is not installed locally) or the QR code:
 

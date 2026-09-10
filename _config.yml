@@ -7,3 +7,15 @@ description: "Notes from a C++ Engineer."
 exclude:
   - local
   - vendor
+  - scripts
+  - README.md
+  - AGENTS.md
+  - CHANGELOG.md
+  - LICENSE.txt
+  - screenshot.png
+  - academic.gemspec
+  - Gemfile
+  - Gemfile.lock
+
+# Posts live under /blog/, whatever folder of _posts they come from.
+permalink: /blog/:year/:month/:day/:title/
