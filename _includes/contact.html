@@ -8,7 +8,7 @@
         <p>{{ contact.institution }}{% if contact.institution_address %} | {{ contact.institution_address }}{% endif %}</p>
         {% if contact.phone %}<p>Phone: {{ contact.phone }}</p>{% endif %}
         {% if contact.email %}<p>Email: <img src="https://i.imgbun.com/TyWhH0GS.png" width="200"/></p>{% endif %}
-        {% if contact.email %}<p>Website: https://alandefreitas.github.io/alandefreitas/ <img src="https://chart.googleapis.com/chart?cht=qr&chl=https://alandefreitas.github.io/alandefreitas/&chs=100x100"/></p>{% endif %}
+        {% if contact.email %}<p>Website: <a href="{{ site.url }}{{ site.baseurl }}/">{{ site.url }}{{ site.baseurl }}/</a> <img src="{{ site.baseurl }}/assets/img/qr-site.png" alt="QR code for this site" width="100"/></p>{% endif %}
         {% if contact.office %}<p>Office: {{ contact.office }}</p>{% endif %}
 
       </div>
